@@ -28,7 +28,7 @@ class App extends React.Component{
   constructor(props){
     super(props);
     //direct assignment can be done only once in constructor
-    this.state={lat:null,lon:null};
+    this.state={lat:null,errorMessage:''};
     window.navigator.geolocation.getCurrentPosition(
       (position)=>{
         //we did setstate
@@ -36,12 +36,20 @@ class App extends React.Component{
         // console log position you will get object postion and u can see how to get latitude from there
         //we did not do like....this.setstate.lat=position.coords.latitude always doo setstate
       },      
-      (err)=>console.log(err)
+      (err)=>{
+        this.setState({errorMessage:err.message})
+      }
     );
   }
   render(){
+    if(!this.state.lat&&this.state.errorMessage){
+      return <div>Error:{this.state.errorMessage}</div>
+    }else if(!this.state.errorMessage&&this.state.lat){
+      return <div>Latitude:{this.state.lat}</div>
+    }else{
+        return  <div>Loading!!!</div>
+    }
    
-    return<div>Latitude:{this.state.lat}</div>
   }
 }
 
