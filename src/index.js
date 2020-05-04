@@ -66,19 +66,26 @@ class App extends React.Component{
   // componentDidUpdate(){ 
   //   console.log('My component was updated-it rerendered');
   // }
-  render(){
+
+  renderContent(){
     if(!this.state.lat&&this.state.errorMessage){
-      return <div className="border red"><div>Error:{this.state.errorMessage}</div></div>
+      return <div>Error:{this.state.errorMessage}</div>
     }else if(!this.state.errorMessage&&this.state.lat){
-      return <div className="border red"><SeasonDisplay lat={this.state.lat}/></div>
+      return <SeasonDisplay lat={this.state.lat}/>
       // Here are we taking state and sending it as prop for season display..from now whenever update takes place on state variable seasonDisplay will also be rendered
       //component gets re-rendered when ever setstate takes place
     }else{
       // instead of place spinner Headers...better make it as a separate component that help to reude when ever required
-        return  <div className="border red"><Spinner message="Please accept location request"/></div>;
+        return  <Spinner message="Please accept location request"/>;
     }
-   
+    
   }
+  //the reson for making rendercontent() is to avoid many return statement inside thje render method..which makes few common things difficult
+  render(){
+    return(<div className="border red">
+      {this.renderContent()}
+    </div>); 
+     }
 }
 
 ReactDOM.render(
