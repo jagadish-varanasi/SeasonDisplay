@@ -10,10 +10,20 @@ const getSeason=(lat,month)=>{
 
 const SeasonDisplay=(props)=>{
     //console.log(props.lat);
+    
 
     const season=getSeason(props.lat,new Date().getMonth())
-    console.log(season);
-    return <div> season display</div>
+    const text=season==='winter'?'Burr,it is chilly!':'Lets hit the beach';
+    //console.log(season);
+    // go to semantic ui--->icons-->ctrl+f search for snowflak and sun..see the source code and implement it
+    const icon=season==='winter'?'snowflak':'sun';
+return(
+    <div>
+        <i className={`${icon} icon`}/>
+         <h1>{text}</h1>
+        <i className={`${icon} icon`}/>
+    </div>
+)
 }
 
 
