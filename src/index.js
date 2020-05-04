@@ -29,6 +29,9 @@ class App extends React.Component{
     super(props);
     //direct assignment can be done only once in constructor
     this.state={lat:null,errorMessage:''};
+    
+  }
+  componentDidMount(){
     window.navigator.geolocation.getCurrentPosition(
       (position)=>{
         //we did setstate
@@ -40,14 +43,23 @@ class App extends React.Component{
         this.setState({errorMessage:err.message})
       }
     );
+
   }
-  componentDidMount(){
-    console.log('My component was renderes on screen');
-  }
-  //right before componentDidupdate render() will be called once again
-  componentDidUpdate(){ 
-    console.log('My component was updated-it rerendered');
-  }
+  //studied under component life cycle methods
+  //componentDid mount can be used for loading something...like data loading...we can use constructor or componentDidMount
+  //many people say instead of constructor use componentDidMount...for data loading...so will use it here to get geolocation
+  //componentDidUpdate gets called when component gets updated for any reason or state changes..or gets new props from parent
+  //good place for data loading that need to be done every single time the component gets updated..use for mutiple data loading request
+  //componentwillunmount....used for clean up just before component is taken off
+  //there are other three methods like shouldComponentUpdate,getDerivedStateFromProps,getSnapshotBeforeUdate methods in component lifecycle will are very infrequently used..ignore these as of now
+
+  // componentDidMount(){
+  //   console.log('My component was renderes on screen');
+  // }
+  // //right before componentDidupdate render() will be called once again
+  // componentDidUpdate(){ 
+  //   console.log('My component was updated-it rerendered');
+  // }
   render(){
     if(!this.state.lat&&this.state.errorMessage){
       return <div>Error:{this.state.errorMessage}</div>
