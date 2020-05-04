@@ -41,6 +41,13 @@ class App extends React.Component{
       }
     );
   }
+  componentDidMount(){
+    console.log('My component was renderes on screen');
+  }
+  //right before componentDidupdate render() will be called once again
+  componentDidUpdate(){ 
+    console.log('My component was updated-it rerendered');
+  }
   render(){
     if(!this.state.lat&&this.state.errorMessage){
       return <div>Error:{this.state.errorMessage}</div>
