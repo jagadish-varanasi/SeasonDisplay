@@ -25,12 +25,17 @@ import ReactDOM from 'react-dom'
 //super need to used... explain similiar to java
 //render method should not conatain many things..as it is called often
 class App extends React.Component{
-  constructor(props){
-    super(props);
-    //direct assignment can be done only once in constructor
-    this.state={lat:null,errorMessage:''};
+  // constructor(props){
+  //   super(props);
+  //   //direct assignment can be done only once in constructor
+  //   this.state={lat:null,errorMessage:''};
     
-  }
+  // }
+  //Need not to have a constructor function the same work can be done with a line of code shown bellow
+  //no nned to use this keyword this time....
+  //this code is no actucally used by browser..the babel converts this js to some form of js that is understood by all popular browsers
+  // u can test this going to babel.io try it out enable stage1,2,3 eeact and paste this two forms of code..u'll get same thing in babel section...
+  state={lat:null,errorMessage:''};
   componentDidMount(){
     window.navigator.geolocation.getCurrentPosition(
       (position)=>{
