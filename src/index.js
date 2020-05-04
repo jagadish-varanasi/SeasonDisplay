@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import SeasonDisplay from './SeasonDisplay'
 
 // const App=()=>{
 //     // API to get users location
@@ -69,7 +70,9 @@ class App extends React.Component{
     if(!this.state.lat&&this.state.errorMessage){
       return <div>Error:{this.state.errorMessage}</div>
     }else if(!this.state.errorMessage&&this.state.lat){
-      return <div>Latitude:{this.state.lat}</div>
+      return <SeasonDisplay lat={this.state.lat}/>
+      // Here are we taking state and sending it as prop for season display..from now whenever update takes place on state variable seasonDisplay will also be rendered
+      //component gets re-rendered when ever setstate takes place
     }else{
         return  <div>Loading!!!</div>
     }
