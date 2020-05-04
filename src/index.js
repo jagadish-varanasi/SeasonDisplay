@@ -68,14 +68,14 @@ class App extends React.Component{
   // }
   render(){
     if(!this.state.lat&&this.state.errorMessage){
-      return <div>Error:{this.state.errorMessage}</div>
+      return <div className="border red"><div>Error:{this.state.errorMessage}</div></div>
     }else if(!this.state.errorMessage&&this.state.lat){
-      return <SeasonDisplay lat={this.state.lat}/>
+      return <div className="border red"><SeasonDisplay lat={this.state.lat}/></div>
       // Here are we taking state and sending it as prop for season display..from now whenever update takes place on state variable seasonDisplay will also be rendered
       //component gets re-rendered when ever setstate takes place
     }else{
       // instead of place spinner Headers...better make it as a separate component that help to reude when ever required
-        return  <Spinner message="Please accept location request"/>;
+        return  <div className="border red"><Spinner message="Please accept location request"/></div>;
     }
    
   }
