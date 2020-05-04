@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import SeasonDisplay from './SeasonDisplay'
-
+import Spinner from './spinner'
 // const App=()=>{
 //     // API to get users location
 //     //if user allows the persion when popup is displayed....position will be displayed orelse err will be displayed....position object contains lan and longitu
@@ -74,7 +74,8 @@ class App extends React.Component{
       // Here are we taking state and sending it as prop for season display..from now whenever update takes place on state variable seasonDisplay will also be rendered
       //component gets re-rendered when ever setstate takes place
     }else{
-        return  <div>Loading!!!</div>
+      // instead of place spinner Headers...better make it as a separate component that help to reude when ever required
+        return  <Spinner message="Please accept location request"/>;
     }
    
   }
